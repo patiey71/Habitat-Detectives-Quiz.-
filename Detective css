@@ -1,0 +1,66 @@
+/* Basic reset (the standalone page needs it) */
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; }
+[hidden] { display: none !important; }
+
+/* Layout: a single card that moves from mystery, to the detective board, to one clue file at a time. Big pictures, little text, tap and listen. */
+  :root {
+    --bg: #eef5f2; --fg: #16302a; --muted: #4d6a62; --card: #ffffff; --line: #c9dcd5;
+    --accent: #1b7a5a; --accent-fg: #ffffff; --good-bg: #dff3e6; --good-fg: #14562e;
+    --hint-bg: #fff1d6; --hint-fg: #6b4300;
+    --sky-top: #bfe3f5; --sand: #f0d9a0; --ice: #dff1fb; --grass: #bfe6a3; --water: #5bb4e0; --night: #1f3d4f;
+    --font: ui-rounded, "Nunito", "Trebuchet MS", system-ui, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0f1d19; --fg: #e5f1ec; --muted: #9fbab1; --card: #172a25; --line: #2b4540;
+      --accent: #5fd0a5; --accent-fg: #07241a; --good-bg: #17402a; --good-fg: #b9efcc;
+      --hint-bg: #43320f; --hint-fg: #ffdc9a;
+      --sky-top: #28506a; --sand: #8a7440; --ice: #3a6178; --grass: #3d6b36; --water: #2f7aa3; --night: #14283a;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0f1d19; --fg: #e5f1ec; --muted: #9fbab1; --card: #172a25; --line: #2b4540;
+    --accent: #5fd0a5; --accent-fg: #07241a; --good-bg: #17402a; --good-fg: #b9efcc;
+    --hint-bg: #43320f; --hint-fg: #ffdc9a;
+    --sky-top: #28506a; --sand: #8a7440; --ice: #3a6178; --grass: #3d6b36; --water: #2f7aa3; --night: #14283a;
+    color-scheme: dark;
+  }
+  body {
+    background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 20px; line-height: 1.45;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 20px 40px;
+  }
+  .wrap { max-width: 640px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; }
+  h1 { font-size: 1.5rem; margin: 0; text-wrap: balance; }
+  .sub, .small { color: var(--muted); font-size: 0.9rem; margin: 0; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 16px; display: flex; flex-direction: column; gap: 14px; }
+  .tag { font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+  h2 { font-size: 1.25rem; margin: 0; text-wrap: balance; }
+  p { margin: 0; }
+  .scene { height: 170px; border-radius: 14px; display: flex; align-items: flex-end; justify-content: center; border: 1px solid var(--line); position: relative; overflow: hidden; }
+  .scene .big { font-size: 5.5rem; line-height: 1; margin-bottom: 14px; }
+  .mystery { background: linear-gradient(var(--sky-top) 0 40%, var(--grass) 40% 62%, var(--water) 62%); }
+  .mystery .big { font-size: 4rem; letter-spacing: 8px; filter: grayscale(1) brightness(.35); }
+  .s-pond { background: linear-gradient(var(--sky-top) 0 45%, var(--grass) 45% 60%, var(--water) 60%); }
+  .s-desert { background: linear-gradient(var(--sky-top) 0 55%, var(--sand) 55%); }
+  .s-snow { background: linear-gradient(var(--sky-top) 0 40%, var(--ice) 40%); }
+  .s-forest { background: linear-gradient(var(--night) 0 50%, var(--grass) 50%); }
+  .board { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; }
+  .pick { font: inherit; color: var(--fg); background: var(--bg); border: 2px solid var(--line); border-radius: 14px; min-height: 110px; padding: 10px; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; position: relative; }
+  .pick .ic { font-size: 2.8rem; line-height: 1; }
+  .pick .lb { font-weight: 700; font-size: 0.95rem; }
+  .pick.seen { border-color: var(--accent); }
+  .pick.seen::after { content: "\2713"; position: absolute; top: 6px; right: 10px; color: var(--accent); font-weight: 800; }
+  .btn { font: inherit; font-weight: 700; background: var(--accent); color: var(--accent-fg); border: 0; border-radius: 14px; padding: 14px 20px; min-height: 52px; cursor: pointer; align-self: flex-start; }
+  .btn.alt { background: var(--bg); color: var(--fg); border: 2px solid var(--line); }
+  .btn:focus-visible, .pick:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+  .row { display: flex; flex-wrap: wrap; gap: 10px; }
+  .clues { display: flex; flex-direction: column; gap: 8px; }
+  .clue { background: var(--bg); border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; display: flex; gap: 10px; align-items: flex-start; }
+  .clue .q { font-weight: 700; }
+  .reveal { background: var(--good-bg); color: var(--good-fg); border-radius: 14px; padding: 12px 14px; font-weight: 700; }
+  .wonder { background: var(--hint-bg); color: var(--hint-fg); border-radius: 14px; padding: 12px 14px; }
+  progress { width: 100%; height: 12px; accent-color: var(--accent); }
