@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Habitat Detectives Quiz</title>
+  <link rel="stylesheet" href="css/quiz.css">
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Habitat Detectives Quiz</h1>
+    <p class="sub">Grade 3 Life Skills: where do animals live? Tap the picture you think is right.</p>
+    <div class="dots" id="dots" aria-hidden="true"></div>
+  </header>
+  <main id="app" class="card" aria-live="polite"></main>
+  <p class="small">Works with no internet. Nothing you tap is saved or sent anywhere, and there is no name to type.</p>
+</div>
+<script src="js/quiz.js"></script>
+</body>
+</html>
