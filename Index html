@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Habitat Detectives</title>
+  <link rel="stylesheet" href="css/detectives.css">
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Habitat Detectives</h1>
+    <p class="sub">Grade 3 Life Skills: where do animals live? Be a detective and use the clues.</p>
+  </header>
+  <main id="app" class="card" aria-live="polite"></main>
+  <p class="small">Works with no internet. Sounds are made by the page itself. There is no name to type and nothing is saved or sent.</p>
+</div>
+<script src="js/detectives.js"></script>
+</body>
+</html>
