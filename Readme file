@@ -1,0 +1,9 @@
+# Habitat Detectives
+
+Grade 3 Life Skills lesson resources (ICTC6212/w, Constraint Set B: offline, shared tablets).
+
+- `index.html`: the Engage/Explore artefact (mystery sound, clue files, wonder question)
+- `quiz.html`: the Evaluate quiz (diagnostic, matching and higher-order questions with feedback)
+
+No images, frameworks or internet connection are needed. Animals and icons are emoji, and the sounds are made by the page itself.
+To use offline, copy this whole folder to a tablet and open `index.html` in the browser.
